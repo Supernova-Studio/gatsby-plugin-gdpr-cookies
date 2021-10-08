@@ -1,6 +1,6 @@
 const {
   validTikTokPixelId,
-  getCookie
+  isEnabled
 } = require('../helper')
 
 exports.addTikTokPixel = () => {
@@ -23,7 +23,7 @@ exports.addTikTokPixel = () => {
 exports.initializeTikTokPixel = (options) => {
   if (
     !window.gatsbyPluginGDPRCookiesTikTokPixelInitialized &&
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validTikTokPixelId(options)
   ) {
     window.ttq.load(options.pixelId)
@@ -34,7 +34,7 @@ exports.initializeTikTokPixel = (options) => {
 
 exports.trackTikTokPixel = (options) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validTikTokPixelId(options) &&
     typeof window.fbq === "function"
   ) {

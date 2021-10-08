@@ -4,7 +4,7 @@ const {
   validFbPixelId,
   validTikTokPixelId,
   validHotjarId,
-  getCookie
+  isEnabled
 } = require('../helper')
 
 const {
@@ -39,7 +39,7 @@ const {
 
 exports.initializeAndTrackGoogleAnalytics = (options, location) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validGATrackingId(options)
   ) {
     addGoogleAnalytics(options).then((status) => {
@@ -53,7 +53,7 @@ exports.initializeAndTrackGoogleAnalytics = (options, location) => {
 
 exports.initializeAndTrackGoogleTagManager = (options, location) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validGTMTrackingId(options)
   ) {
     let environmentParamStr = ``
@@ -72,7 +72,7 @@ exports.initializeAndTrackGoogleTagManager = (options, location) => {
 
 exports.initializeAndTrackFacebookPixel = (options) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validFbPixelId(options)
   ) {
     addFacebookPixel().then((status) => {
@@ -86,7 +86,7 @@ exports.initializeAndTrackFacebookPixel = (options) => {
 
 exports.initializeAndTrackTikTokPixel = (options) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validTikTokPixelId(options)
   ) {
     addTikTokPixel().then((status) => {
@@ -100,7 +100,7 @@ exports.initializeAndTrackTikTokPixel = (options) => {
 
 exports.initializeAndTrackHotjar = (options) => {
   if (
-    getCookie(options.cookieName) === `true` &&
+    isEnabled(options) &&
     validHotjarId(options)
   ) {
     addHotjar(options).then((status) => {

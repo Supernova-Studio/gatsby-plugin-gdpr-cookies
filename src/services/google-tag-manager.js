@@ -1,6 +1,6 @@
 const {
   validGTMTrackingId,
-  getCookie
+  isEnabled
 } = require('../helper')
 
 // TODO: tag manager does track automatically when adding it to the dom
@@ -50,7 +50,7 @@ exports.initializeGoogleTagManager = (options) => {
   // console.log('initing tag manager');
   // if (
   //   !window.gatsbyPluginGDPRCookiesGoogleTagManagerInitialized &&
-  //   getCookie(options.cookieName) === `true` &&
+  //   isEnabled(options) &&
   //   validGTMTrackingId(options)
   // ) {
   //   window.dataLayer = window.dataLayer || [];
@@ -72,7 +72,7 @@ exports.initializeGoogleTagManager = (options) => {
 exports.trackGoogleTagManager = (options, location) => {
   // console.log('tracking tag manager');
   // if (
-  //   getCookie(options.cookieName) === `true` &&
+  //   isEnabled(options) &&
   //   validGTMTrackingId(options) &&
   //   typeof window.gtag === "function"
   // ) {

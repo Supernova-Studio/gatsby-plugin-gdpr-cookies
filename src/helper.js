@@ -25,6 +25,8 @@ exports.getCookie = name => {
   return v ? v[2] : null;
 }
 
+exports.isEnabled = (options) => options.skipCookieCheck || exports.getCookie(options.cookieName) === `true`
+
 exports.isEnvironmentValid = (environments) => {
   const currentEnvironment = process.env.ENV || process.env.NODE_ENV || `development`
   return environments.includes(currentEnvironment)
